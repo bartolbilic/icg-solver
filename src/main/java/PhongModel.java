@@ -1,6 +1,6 @@
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-public class Main {
+public class PhongModel {
     //Triangle vertices
     private static final int[] A = {-4, -4, 0};
     private static final int[] B = {2, 6, -4};
@@ -20,10 +20,10 @@ public class Main {
     private static final int n = 5;
 
     public static void main(String[] args) {
-        Main main = new Main();
-        double ambientComponent = main.calculateAmbientComponent();
-        double diffuseComponent = main.calculateDiffuseComponent();
-        double specularComponent = main.calculateSpecularComponent();
+        PhongModel phongModel = new PhongModel();
+        double ambientComponent = phongModel.calculateAmbientComponent();
+        double diffuseComponent = phongModel.calculateDiffuseComponent();
+        double specularComponent = phongModel.calculateSpecularComponent();
 
         System.out.println("Ambient component: " + ambientComponent);
         System.out.println("Diffuse component: " + diffuseComponent);
