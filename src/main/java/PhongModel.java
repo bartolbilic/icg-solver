@@ -2,22 +2,22 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 public class PhongModel {
     //Triangle vertices
-    private static final int[] A = {-4, -4, 0};
-    private static final int[] B = {2, 6, -4};
-    private static final int[] C = {7, -1, -2};
+    private static final int[] A = {8, 4, 4};
+    private static final int[] B = {9, 1, 8};
+    private static final int[] C = {-10, 6, 0};
 
-    private static final int[] viewPoint = {2, -5, 4};
-    private static final int[] view = {3, -8, 5};
+    private static final int[] viewPoint = {-8, 2, 0};
+    private static final int[] view = {8, 1, 2};
 
-    private static final int intensity = 198;
-    private static final int[] lightPosition = {-1, 7, -4};
+    private static final int intensity = 129;
+    private static final int[] lightPosition = {6, -8, 3};
 
-    private static final int ambientIntensity = 183;
+    private static final int ambientIntensity = 190;
 
-    private static final double ka = 0.22;
-    private static final double kd = 0.96;
-    private static final double ks = 0.33;
-    private static final int n = 5;
+    private static final double ka = 0.73;
+    private static final double kd = 0.35;
+    private static final double ks = 0.56;
+    private static final int n = 2;
 
     public static void main(String[] args) {
         PhongModel phongModel = new PhongModel();
@@ -32,14 +32,14 @@ public class PhongModel {
     }
 
     public double calculateAmbientComponent() {
-        return ambientIntensity * ka;
+        return Math.abs(ambientIntensity * ka);
     }
 
     public double calculateDiffuseComponent() {
         Vector3D normal = getNormalVector();
         Vector3D lightVector = getLightVector();
 
-        return intensity * kd * lightVector.dotProduct(normal);
+        return Math.abs(intensity * kd * lightVector.dotProduct(normal));
     }
 
     public double calculateSpecularComponent() {
@@ -47,7 +47,7 @@ public class PhongModel {
         Vector3D viewPointVector = getViewpointVector();
 
         double dotProduct = reflectionVector.dotProduct(viewPointVector);
-        return intensity * ks * Math.pow(dotProduct, n);
+        return Math.abs(intensity * ks * Math.pow(dotProduct, n));
     }
 
     private Vector3D getNormalVector() {
